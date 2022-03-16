@@ -4,11 +4,13 @@ namespace App\Listeners;
 
 use App\Events\NewPostCreated;
 use App\Models\Website;
+use App\Notifications\SendEmailToAllUsersOfTheWebsiteNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class SendMailWhenPostIsCreated
 {
@@ -31,18 +33,22 @@ class SendMailWhenPostIsCreated
      */
     public function handle(NewPostCreated $event)
     {
-        $users = $event->website->subscriptions()->pluck('email')->toArray();
         $title = $event->post->title;
         $description = $event->post->description;
         $text = "New post with the title: $title and description: $description";
 
-        Mail::raw(
-            $text,
-            function ($message) use ($users) {
-                $message->from('admin@admin.com');
-                $message->to($users);
-                $message->subject('New Post Created');
-            }
-        );
+        $event->website->subscriptions()->each(function ($user) use ($text) {
+            $user->notify(new SendEmailToAllUsersOfTheWebsiteNotification($text));
+        });
+
+
+//        Mail::raw(
+//            $text,
+//            function ($message) use ($users) {
+//                $message->from('admin@admin.com');
+//                $message->to($users);
+//                $message->subject('New Post Created');
+//            }
+//        );
     }
 }
