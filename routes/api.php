@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\API\WebsiteAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('websites', [WebsiteController::class, 'index']);
+Route::get('websites', [WebsiteAPIController::class, 'index']);
 Route::post('{website}/post'); // TODO
 Route::post('{website}/subscribe'); // TODO
