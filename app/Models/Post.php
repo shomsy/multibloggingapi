@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'website_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
