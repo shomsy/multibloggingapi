@@ -11,10 +11,10 @@ class WebsiteFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->domainName(),
         ];
     }
 }
