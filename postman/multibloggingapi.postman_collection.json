@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "574db474-4260-4037-baea-c6e6acb319c2",
+		"name": "multibloggingapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Websites (With their posts and subscribed users)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://multibloggingapi.test/api/websites",
+					"protocol": "http",
+					"host": [
+						"multibloggingapi",
+						"test"
+					],
+					"path": [
+						"api",
+						"websites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe to a website",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "website",
+							"value": "morissette.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://multibloggingapi.test/api/",
+					"protocol": "http",
+					"host": [
+						"multibloggingapi",
+						"test"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Test title",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Test description",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://multibloggingapi.test/api/:website/post",
+					"protocol": "http",
+					"host": [
+						"multibloggingapi",
+						"test"
+					],
+					"path": [
+						"api",
+						":website",
+						"post"
+					],
+					"variable": [
+						{
+							"key": "website",
+							"value": "leuschke.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

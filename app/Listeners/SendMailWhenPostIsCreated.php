@@ -40,15 +40,5 @@ class SendMailWhenPostIsCreated
         $event->website->subscriptions()->each(function ($user) use ($text) {
             $user->notify(new SendEmailToAllUsersOfTheWebsiteNotification($text));
         });
-
-
-//        Mail::raw(
-//            $text,
-//            function ($message) use ($users) {
-//                $message->from('admin@admin.com');
-//                $message->to($users);
-//                $message->subject('New Post Created');
-//            }
-//        );
     }
 }

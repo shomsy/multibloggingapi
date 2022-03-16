@@ -37,7 +37,7 @@ class SendEmailToAllUsers extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         User::whereNotNull('email')
             ->get()->each(function ($user) {
