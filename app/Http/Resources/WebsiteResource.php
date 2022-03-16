@@ -18,7 +18,7 @@ class WebsiteResource extends JsonResource
         return [
             'title' => $this->title,
             'posts' => PostResource::collection($this->posts),
-            'subscriptions' => SubscribedSubscribedUserResource::collection($this->subscriptions),
+            'subscriptions' => SubscribedUserResource::collection($this->subscriptions),
         ];
     }
 }
