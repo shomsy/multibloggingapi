@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\WebsiteCollection;
+use App\Http\Resources\WebsiteResource;
 use App\Models\Website;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class WebsiteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        $websites = Website::with(['posts', 'subscriptions'])->get();
+
+        return  WebsiteResource::collection($websites);
     }
 
     /**
